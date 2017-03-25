@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>事件委托</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul li{
+            width: 100px;
+            height: 20px;
+            margin-top: 10px;
+            border: 1px solid #000;
+        }
+
+    </style>
+</head>
+<body>
+    <button id="clickme">点击我</button>
+    <ul id="ul">
+        <li>11</li>
+        <li>22</li>
+    </ul>
+    <script>
+        var oClick = document.getElementById("clickme");
+        var oUl = document.getElementById("ul");
+        var aLi = oUl.getElementsByTagName("li");
+        var target;
+        oClick.onclick = function(){
+            var html = document.createElement("li");
+            html.innerHTML= randomNum(50,100);//50-100之间的数
+            oUl.appendChild(html);
+        };
+        function randomNum(low,high){
+            return Math.ceil(Math.random()*(high-low)+low);
+        };
+        //事件委托
+        oUl.onclick = function(e){
+            e = e || window.event;
+            target = e.target || e.srcElement;
+            console.log(target.tagName);
+            if(target.tagName == "LI"){
+                alert(target.innerHTML);
+            }
+        };
+
+
+    </script>
+</body>
+</html>

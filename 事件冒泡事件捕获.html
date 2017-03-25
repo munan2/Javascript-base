@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>事件冒泡事件捕获</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #aa{
+            width: 600px;
+            height: 600px;
+            background: #ff0000;
+        }
+        #bb{
+            width: 400px;
+            height: 400px;
+            background: #0f0;
+        }
+        #cc{
+            width: 200px;
+            height: 200px;
+            background: #0000ff;
+        }
+    </style>
+</head>
+<body>
+    <div id="aa">
+        <div id="bb">
+            <div id="cc"></div>
+        </div>
+    </div>
+    <script>
+        var oA = document.getElementById("aa");
+        var oB = document.getElementById("bb");
+        var oC = document.getElementById("cc");
+        oC.addEventListener("click",function(e){
+            e.stopPropagation();
+            alert("oc蓝事件冒泡");
+
+        },false);
+        oC.attachEvent("click",function(e){
+            e= e|| window.event;
+            e.cancelBubble = true;
+            alert("oc蓝事件冒泡");
+        });
+        oA.addEventListener("click",function(){
+            alert("oa红事件冒泡");
+        },false);
+        oB.addEventListener("click",function(){
+            alert("ob绿事件冒泡");
+        },false);
+//        oC.addEventListener("click",function(){
+//            alert("oc蓝事件捕获");
+//        },true);
+//        oA.addEventListener("click",function(){
+//            alert("oa红事件捕获");
+//        },true);
+//        oB.addEventListener("click",function(){
+//            alert("ob绿事件捕获");
+//        },true);
+    </script>
+</body>
+</html>

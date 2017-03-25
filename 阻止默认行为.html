@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>阻止默认行为</title>
+</head>
+<body>
+    <a href="http://www.baidu.com" id="click">click me</a>
+    <script>
+        var oClick = document.getElementById("click");
+        function stopDefault(e)
+        {  
+            e = e || window.event;
+            if(e.preventDefault){
+                e.preventDefault();
+            }else{
+                e.returnValue = false;  
+            }
+        } 
+        oClick.onclick = function(e){
+           stopDefault(e);
+        }
+    </script>
+</body>
+</html>

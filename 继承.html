@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>继承</title>
+</head>
+<body>
+    <script>
+        function Parent(name,age){
+            this.name = name;
+            this.age = age;
+        };
+        Parent.prototype.showName = function(){
+            alert(this.name);
+        };
+        Parent.prototype.showAge = function(){
+            console.log(this.age);
+        }
+        function Child(name,age){
+            Parent.call(this,name,age);//继承属性
+        }
+        Child.prototype = new Parent();//继承原型方法
+        console.log(Child.prototype);
+        var p1 = new Parent("zhangyan");
+//        p1.showName();
+        var p2 = new Child("lisi",13);
+        p2.showAge();
+    </script>
+</body>
+</html>

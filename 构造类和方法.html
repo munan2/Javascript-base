@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>构造类和方法</title>
+</head>
+<body>
+    <script>
+        function People(name,age){
+            this.name = name;
+            this.age = age;
+            this.showName = function(){
+                alert(1);
+            };
+        };
+        People.prototype.showName = function(){
+//            alert(this.name);
+            alert(2);
+        };
+        var p1 = new People("zhangyan",23);
+//        p1.showName = function(){
+//            alert(3);
+//        };
+        p1.showName();
+        console.log(People.prototype===p1.__proto__);//true，说明这两个是一个东西
+    </script>
+</body>
+</html>

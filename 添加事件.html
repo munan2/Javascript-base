@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>添加事件</title>
+</head>
+<body>
+    <button id="click" onclick = "handel()">点击我</button>
+    <script>
+        var oClick = document.getElementById("click");
+//        oClick.onclick = function(){
+//             alert(1);
+//        };
+//        oClick.onclick = function(){
+//            alert(2);
+//        };  //onclick事件无法实现对一个对象定义两个相同的事件
+//        oClick.addEventListener("click",function(){
+//            alert(1);
+//        },false);
+//        oClick.addEventListener("click",function(){
+//            alert(2);
+//        },false);
+//        oClick.attachEvent("click",function(){
+//            alert(1);
+//        });
+//        oClick.setAttribute("onclick",function(){
+//            alert(1);
+//        });
+//        oClick.setAttribute("onclick", "javascript:console.log('测试');");
+        function handel(){
+            alert(1);
+        }
+    </script>
+</body>
+</html>

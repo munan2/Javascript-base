@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script>
+        var bb = function(a,b){
+            console.log(this);
+            console.log(a+b);
+        };
+        var aa = {
+            name:"zhangsan"
+        }
+        bb(12,11);
+        bb.call(aa,12,11);
+        bb.apply(aa,[12,10]);
+        bb.bind(aa)();
+    </script>
+</body>
+</html>
