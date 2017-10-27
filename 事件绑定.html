@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>事件绑定</title>
+</head>
+<body>
+	<button id="J-click-btn">click me</button>
+	<script>
+		var clickBtn = document.getElementById('J-click-btn');
+		function addEvent (ele, type, fn, bool) {
+			if (ele.addEventListener) {
+				if (bool) {
+					ele.addEventListener(type, fn, bool);
+				} else {
+					ele.addEventListener(type, fn, false);
+				}
+			} else if (ele.attachEvent) {
+				ele.attachEvent('on' + type, fn);
+			} else {
+				ele['on' + type] = fn;
+			}
+		}
+		function detachEvent (ele, type, fn, bool) {
+			if (ele.removeEventListener) {
+				if (bool) {
+					ele.removeEventListener(type, fn, bool);
+				} else {
+					ele.removeEventListener(type, fn, false);
+				}
+			} else if (ele.detachEvent) {
+				ele.detachEvent('on' + type, fn);
+			} else {
+				ele['on' + type] = null;
+			}
+		}
+	</script>
+</body>
+</html>

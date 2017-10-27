@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>字体颜色随浏览器不同变化</title>
+	<style>
+		.title {
+			color:#f00;/*所有识别*/
+			.color:#ff0; /*IE6、7、8识别*/
+			+color:#f0f;/*IE6、7识别*/
+			_color:#00f;/*IE6识别*/
+		}
+		@-moz-document url-prefix() { 
+			.title { 
+				color:#ccc; 
+			} 
+		}
+		@media screen and (-webkit-min-device-pixel-ratio:0) { 
+			.title { 
+				color: #333; 
+			} 
+		}
+		@media all and (-webkit-min-device-pixel-ratio:10000), not all and (-webkit-min-device-pixel-ratio:0) { 
+			.title { 
+				color: #555; 
+			} 
+		}
+	</style>
+</head>
+<body>
+	<h1 class="title">hello world</h1>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>判断数据类型</title>
+</head>
+<body>
+	<script>
+		function isType (obj) {
+			var type = Object.prototype.toString.call(obj);
+			return type.slice(8, -1);
+		}
+		console.log(isType([1,2]));
+	</script>
+</body>
+</html>

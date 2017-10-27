@@ -64,5 +64,131 @@ xhr.open('POST', './data.json', true);
 xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 xhr.send("fname=Henry&lname=Ford");
 ```
+## 盒模型
+### 分类
+1. 标准盒模型：我们在css样式里设置的width就是content的宽度，在浏览器看到的一个div的外边距是content的宽度+padding宽度+border宽度
+2. 怪异盒模型：我们在css样式里设置的width就是一个div的外边距，包含了content+padding+border
+这里我们设置标准盒模型和怪异盒模型可以使用css中的box-sizing这个属性来设置
+
+    ```dash
+    box-sizing:content-box; 标准盒模型
+    box-sizing:border-box;怪异盒模型
+    ```
+    
+### 应用场景
+1. 自适应三列布局，三列按比例，其中一个一列的文字距离两边有固定的距离。
+
+### 浏览器兼容问题
+IE8以及以上版本支持该属性，火狐浏览器加上-moz-前缀
+## 元素
+### 块级元素与行级元素
+1. 块级元素:默认宽度占父元素的宽，垂直分布，宽和高可以设置。
+2. 行内元素：不可以设置宽高，宽高由内容撑开，不可以设置margin-top,margin-bottom，padding-top,padding-bottom。水平分布
+3. 行内元素和块级元素的转换
+    +  块级元素转换成行内元素的方法： 浮动或者display:inline;
+    + 行内元素转换成块级元素的方法： display:block;
+    
+### 浮动
+浮动元素脱离文档流，浮动元素常见的问题：
+
+1. 两个并列的元素，前一个元素浮动，脱离文档流，后面的元素会顶上去。如果想要清除浮动的效果，常见的方法有：
+    - 可以设置后一个元素clear:both;
+    - 或者给后一个元素也设置浮动;
+2. 一个父元素里面有一个子元素，子元素浮动了，脱离文档流会导致父元素没有高度，高度塌陷的问题。
+    - 给父元素设置固定高
+    - 给父元素设置一个类，给这个类加上一个clearfix的类名，设置
+    ```
+    .clearfix:after {content:'';clear:both;display:block;}
+    ```
+    - 给父元素也浮动
+    - 给父元素设置overflow:auto或者hidden，触发BFC事件
+    
+## DOM操作
+### 添加操作
+
+- createElement()添加元素节点
+- createTextNode()添加本文节点
+
+### 插入操作(插入的过程就是移动)
+- appendChild()
+- insertBefore()   
+
+### 查找操作
+
+- nextSibling查找下一个元素，但是无法排除换行符和注释的代码
+	
+	```
+	<div id="div1">
+		<ul id="ul1">
+			<li>111</li>
+			<li>222</li>
+			<li>333</li>
+		</ul>
+	</div>
+	<div id="div2">哈哈
+		<span id="span1">123</span>
+	</div>
+	<script>
+		var oDiv = document.getElementById('div1');
+		console.log(oDiv.nextSibling);//#text
+	</script>
+	```
+封装next()函数：
+
+	```
+	function next(node) {
+		var nextNode = node.nextSibling;
+		while (nextNode && nextNode.nodeType !== 1) {
+			nextNode = nextNode.nextSibling;
+		} 
+		return nextNode;
+	}
+	```
+- prevSibling，同上面的问题一样
+- getElementById()
+- getElementsByTagName()
+- getElementsByClassName()兼容性问题
+
+```
+function getClassName (name) {
+	if (document.getElementsByClassName) {
+		return document.getElementsByClassName(name);
+	} else {
+		var nodes = document.getElementsByTagName('*');
+		var results = [];
+		for (var i=0; i<nodes.length; i++) {
+			if (nodes[i].className === name) {
+				results.push(nodes[i]);
+			}
+		}
+		return results;
+	}
+}
+```
+- querySelector()
+- querySelectorAll()
+
+### 删除
+- removeChild
+
+### 复制
+- cloneNode(boolean)
+
+	参数为true，是深复制，复制本身和子节点， false是浅复制，只复制本身
+	
+## 数据类型
+- 基本数据类型 undefined, null, boolean, string, number
+- 引用数据类型  object
+
+### 判断数据类型的方法：
+1. typeof 不能判断null和object
+2. instanceof 其__proto__属性是否构造函数的原型  
+	对于基本类型，有问题。例如直接var a = 1; a instanceof Number;返回的是false
+3. Object.prototype.toString.call(）
+
+
+
+
+
 
 

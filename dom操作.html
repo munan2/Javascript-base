@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>dom操作</title>
+</head>
+<body>
+	<div id="div1">
+		<ul id="ul1">
+			<li class="li-list">111
+				<span>hello</span>
+			</li>
+			<li class="li-list">222</li>
+			<li class="li-list">333</li>
+		</ul>
+	</div>
+	<div id="div2">哈哈
+		<span id="span1">123</span>
+	</div>
+	<script>
+		var oDiv = document.getElementById('div1');
+		var oUl = document.getElementById('ul1');
+		var newLi = document.createElement('li');
+		var oSpan = document.createElement('span');
+		oSpan.innerHTML = 'hello world';
+		oUl.appendChild(newLi);
+		oDiv.insertBefore(oSpan,oUl);
+		
+		var oDiv2 = document.getElementById('div2');
+		var oSpan1 = document.getElementById('span1');
+		oSpan1.parentNode.removeChild(oSpan1);
+		console.log(oDiv.nextSibling);
+		function next(node) {
+			var nextNode = node.nextSibling;
+			while (nextNode && nextNode.nodeType !== 1) {
+				nextNode = nextNode.nextSibling;
+			} 
+			return nextNode;
+		}
+		console.log(next(oDiv));
+
+		function getClassName (name) {
+			if (document.getElementsByClassName) {
+				return document.getElementsByClassName(name);
+			} else {
+				var nodes = document.getElementsByTagName('*');
+				var results = [];
+				for (var i=0; i<nodes.length; i++) {
+					if (nodes[i].className === name) {
+						results.push(nodes[i]);
+					}
+				}
+				return results;
+			}
+		}
+		console.log(getClassName('li-list'));
+		console.log(document.querySelector('.li-list'));
+
+		var ul2 = oUl.cloneNode(true);
+		var ul3 = oUl.cloneNode(false);
+		oDiv.appendChild(ul2);
+		oDiv.appendChild(ul3);
+		oDiv.appendChild(oDiv2);
+
+
+	</script>
+</body>
+</html>
