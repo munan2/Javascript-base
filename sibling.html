@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>siblings</title>
+</head>
+<body>
+	<a href="" id="aa">1111</a>
+	<a href="" id="bb">2222</a>
+	<script>
+		var oA = document.getElementById('aa');
+		var oB = document.getElementById('bb');
+		console.log(oA.nextSibling);//#text
+		console.log(oA.nextElementSibling);//<a href="" id="bb">2222</a>
+		function nextElementSib (node) {
+			while(node.nextSibling && node.nextSibling.nodeType !== 1) {
+				node = node.nextSibling;
+			}
+			return node.nextSibling;
+		}
+		console.log(nextElementSib(oA));
+	</script>
+</body>
+</html>

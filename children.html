@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>children</title>
+</head>
+<body>
+	<ul id="parent">
+		<li>111
+			<a href="">link</a>
+		</li>
+		<li>222</li>
+		<li>333</li>
+	</ul>
+	<div id="aa">
+		<a href="" >lalalala</a>
+		<a href="" >hahhaha</a>
+	</div>
+	
+	<script>
+		var oP = document.getElementById('parent');
+		console.log(oP.children);
+		console.log(oP.childNodes);
+		console.log(oP.firstChild);
+		console.log(oP.firstElementChild);
+
+		var oA = document.getElementById('aa');
+		console.log(oA.firstChild);//#text
+		console.log(oA.firstElementChild);
+	</script>
+</body>
+</html>

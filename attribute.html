@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>attribute</title>
+</head>
+<body>
+	<a href="#" data-id="1" id="aa">12</a>
+	<script>
+		var oA = document.getElementById('aa');
+		console.log(oA.getAttribute('data-id'));
+		console.log(oA.attributes['data-id'].value);
+	</script>
+</body>
+</html>
